@@ -28,6 +28,10 @@
 		<folder>layouts</folder>
 	</files>
 	
+	<updateservers>
+		<server type="extension" name="JJ UIKit HTML Editor" priority="1">http://www.joomjunk.co.uk/updates/uikit_htmleditor_update.xml</server>
+	</updateservers>
+	
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
