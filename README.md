@@ -1,2 +1,1 @@
-# UIkit-Editor
-JoomJunk's UIkit editor
+# JJ UIKit HTML Editor

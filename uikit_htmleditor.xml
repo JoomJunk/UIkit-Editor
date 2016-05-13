@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="editors" method="upgrade">
+	<name>JJ UIKit HTML Editor</name>
+	<author>JoomJunk</author>
+	<creationDate>22-04-2016</creationDate>
+	<copyright>Copyright (C) 2011 - 2016 JoomJunk</copyright> 
+	<license>http://www.gnu.org/licenses/gpl-3.0.html</license> 
+	<authorEmail>admin@joomjunk.co.uk</authorEmail> 
+	<authorUrl>http://www.joomjunk.co.uk</authorUrl> 
+	<version>1.0.0</version>
+	<description>JJ_UIKIT_HTMLEDITOR_DESC</description>
+	
+	<media folder="media" destination="plg_uikit_htmleditor">
+		<folder>css</folder>
+		<folder>fonts</folder>
+		<folder>js</folder>
+	</media>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_editors_uikit_htmleditor.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_editors_uikit_htmleditor.sys.ini</language>
+	</languages>
+	
+	<files>
+		<filename plugin="uikit_htmleditor">uikit_htmleditor.php</filename>
+		<filename>index.html</filename>
+		<folder>language</folder>
+		<folder>layouts</folder>
+	</files>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				
+				<field name="display" type="radio" class="btn-group" default="split" label="JJ_UIKIT_HTMLEDITOR_DISPLAY" description="JJ_UIKIT_HTMLEDITOR_DISPLAY_DESC">
+					<option value="tab">JJ_UIKIT_HTMLEDITOR_DISPLAY_TAB</option>
+					<option value="split">JJ_UIKIT_HTMLEDITOR_DISPLAY_SPLIT</option>
+				</field>
+				
+				<field name="maxsplitsize" type="text" default="1000" label="JJ_UIKIT_HTMLEDITOR_MAXSPLITSIZE" description="JJ_UIKIT_HTMLEDITOR_MAXSPLITSIZE_DESC" showon="display:split" />
+				
+				<field name="highlight" type="radio" class="btn-group" default="1" label="JJ_UIKIT_HTMLEDITOR_HIGHLIGHTING" description="JJ_UIKIT_HTMLEDITOR_HIGHLIGHTING_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

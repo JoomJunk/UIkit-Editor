@@ -1,0 +1,10 @@
+/**
+ * @package    JJ_Simple_Editor
+ * @copyright  Copyright (C) 2011 - 2016 JoomJunk. All rights reserved.
+ * @license    GPL v3.0 or later http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+.uk-htmleditor-fullscreen {
+	top: 31px;
+	z-index: 1031;
+}
