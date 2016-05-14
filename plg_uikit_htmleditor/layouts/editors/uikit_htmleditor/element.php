@@ -21,7 +21,6 @@ $paramDisplay      = $params->get('display', 'split');
 $paramMaxSplitSize = $params->get('maxsplitsize', 1000);
 
 JFactory::getDocument()->addScriptDeclaration('
-	var JJ_UIKIT = UIkit.noConflict();
 	var JJ_UIKIT_htmleditor = null;
 
 	jQuery(function($) {

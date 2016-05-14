@@ -12,8 +12,10 @@ $params = $displayData->params;
 
 // Load jQuery and UIKit
 JHtml::_('jquery.framework');
+JHtml::_('behavior.core');
 JHtml::_('stylesheet', 'media/plg_uikit_htmleditor/css/uikit.min.css');
 JHtml::_('script', 'media/plg_uikit_htmleditor/js/uikit.min.js');
+JHtml::_('script', 'media/plg_uikit_htmleditor/js/uikit-noconflict.js');
 
 // Load Codemirror
 JHtml::_('stylesheet', 'media/editors/codemirror/lib/codemirror.min.css');
