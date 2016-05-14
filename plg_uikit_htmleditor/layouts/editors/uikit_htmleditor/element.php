@@ -50,7 +50,10 @@ JFactory::getDocument()->addScriptDeclaration('
 				JJ_UIKIT_htmleditor.replaceSelection("<hr id=\"system-readmore\" />");
 			}
 		});
-
+		
+		$(".uk-htmleditor-button-preview a").on("click", function() {
+			$(".uk-htmleditor-preview").height("500px");
+		});
 	});
 ');
 ?>
