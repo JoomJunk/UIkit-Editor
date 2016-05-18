@@ -14,6 +14,10 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+Version 1.0.2
+$ Fixed muddled up language descriptions (thanks Matsxm)
++ Added French language pack (thanks Matsxm)
+
 Version 1.0.1
 ^ Ensure UIkit.noConflict is imported from separate file
 ^ Ensure behavior.core is imported
