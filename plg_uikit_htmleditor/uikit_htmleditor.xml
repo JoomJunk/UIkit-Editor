@@ -19,6 +19,8 @@
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.plg_editors_uikit_htmleditor.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.plg_editors_uikit_htmleditor.sys.ini</language>
+		<language tag="fr-FR">language/fr-FR/fr-FR.plg_editors_uikit_htmleditor.ini</language>
+		<language tag="fr-FR">language/fr-FR/fr-FR.plg_editors_uikit_htmleditor.sys.ini</language>
 	</languages>
 	
 	<files>
