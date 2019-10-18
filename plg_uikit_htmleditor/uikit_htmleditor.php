@@ -8,7 +8,12 @@
 // No direct access
 defined('_JEXEC') or die;
 
-class plgEditorUikit_htmleditor extends JPlugin
+use Joomla\CMS\Factory;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Plugin\PluginHelper;
+
+class plgEditorUikit_htmleditor extends CMSPlugin
 {
 	protected $autoloadLanguage = true;
 
@@ -25,20 +30,19 @@ class plgEditorUikit_htmleditor extends JPlugin
 		$done = true;
 
 		// JJ UIKit HTML editor shall have its own group of plugins to modify and extend its behavior
-		$result     = JPluginHelper::importPlugin('editors_uikit_htmleditor');
-		$dispatcher = JEventDispatcher::getInstance();
+		$result = PluginHelper::importPlugin('editors_uikit_htmleditor');
 
 		// At this point, params can be modified by a plugin before going to the layout renderer.
-		$dispatcher->trigger('onUikit_HtmleditorBeforeInit', array(&$this->params));
+		Factory::getApplication()->triggerEvent('onUikit_HtmleditorBeforeInit', [$this->params]);
 
-		$displayData = (object) array('params'  => $this->params);
+		$displayData = (object) ['params' => $this->params];
 
 		// We need to do output buffering here because layouts may actually 'echo' things which we do not want.
 		ob_start();
-		JLayoutHelper::render('editors.uikit_htmleditor.init', $displayData, __DIR__ . '/layouts');
+		LayoutHelper::render('editors.uikit_htmleditor.init', $displayData, __DIR__ . '/layouts');
 		ob_end_clean();
 
-		$dispatcher->trigger('onUikit_HtmleditorAfterInit', array(&$this->params));
+		Factory::getApplication()->triggerEvent('onUikit_HtmleditorAfterInit', [$this->params]);
 	}
 
 	/**
@@ -130,7 +134,7 @@ class plgEditorUikit_htmleditor extends JPlugin
 	 * @return  string  HTML
 	 */
 	public function onDisplay(
-		$name, $content, $width, $height, $col, $row, $buttons = true, $id = null, $asset = null, $author = null, $params = array())
+		$name, $content, $width, $height, $col, $row, $buttons = true, $id = null, $asset = null, $author = null, $params = [])
 	{
 		$id = empty($id) ? $name : $id;
 
@@ -141,7 +145,7 @@ class plgEditorUikit_htmleditor extends JPlugin
 		$options = new stdClass;
 		//$options->autofocus = (boolean) $this->params->get('autoFocus', true);
 
-		$displayData = (object) array(
+		$displayData = (object) [
 			'options' => $options,
 			'params'  => $this->params,
 			'name'    => $name,
@@ -150,16 +154,14 @@ class plgEditorUikit_htmleditor extends JPlugin
 			'rows'    => $row,
 			'content' => $content,
 			'buttons' => $buttons
-		);
-
-		$dispatcher = JEventDispatcher::getInstance();
+		];
 
 		// At this point, displayData can be modified by a plugin before going to the layout renderer.
-		$results = $dispatcher->trigger('onUikit_HtmleditorBeforeDisplay', array(&$displayData));
+		$results = Factory::getApplication()->triggerEvent('onUikit_HtmleditorBeforeDisplay', [$displayData]);
 
-		$results[] = JLayoutHelper::render('editors.uikit_htmleditor.element', $displayData, __DIR__ . '/layouts', array('debug' => JDEBUG));
+		$results[] = LayoutHelper::render('editors.uikit_htmleditor.element', $displayData, __DIR__ . '/layouts', ['debug' => JDEBUG]);
 
-		foreach ($dispatcher->trigger('onUikit_HtmleditorAfterDisplay', array(&$displayData)) as $result)
+		foreach (Factory::getApplication()->triggerEvent('onUikit_HtmleditorAfterDisplay', [$displayData]) as $result)
 		{
 			$results[] = $result;
 		}
@@ -181,10 +183,10 @@ class plgEditorUikit_htmleditor extends JPlugin
 	{
 		$return = '';
 
-		$args = array(
+		$args = [
 			'name'  => $name,
 			'event' => 'onGetInsertMethod'
-		);
+		];
 
 		$results = (array) $this->update($args);
 
@@ -203,7 +205,7 @@ class plgEditorUikit_htmleditor extends JPlugin
 		{
 			$buttons = $this->_subject->getButtons($name, $buttons, $asset, $author);
 
-			$return .= JLayoutHelper::render('joomla.editors.buttons', $buttons);
+			$return .= LayoutHelper::render('joomla.editors.buttons', $buttons);
 		}
 
 		return $return;

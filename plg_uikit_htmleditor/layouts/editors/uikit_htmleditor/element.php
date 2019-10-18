@@ -8,6 +8,9 @@
 // No direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
 $options = $displayData->options;
 $params  = $displayData->params;
 $name    = $displayData->name;
@@ -20,7 +23,7 @@ $buttons = $displayData->buttons;
 $paramDisplay      = $params->get('display', 'split');
 $paramMaxSplitSize = $params->get('maxsplitsize', 1000);
 
-JFactory::getDocument()->addScriptDeclaration('
+Factory::getDocument()->addScriptDeclaration('
 	var JJ_UIKIT_htmleditor = null;
 
 	jQuery(function($) {
@@ -30,7 +33,7 @@ JFactory::getDocument()->addScriptDeclaration('
 		JJ_UIKIT_htmleditor = JJ_UIKIT.htmleditor(editorElement, {
 			mode         : \'' . $paramDisplay . '\',
 			maxsplitsize : ' . $paramMaxSplitSize . ',
-			lblPreview   : \'' . JText::_('JJ_UIKIT_HTMLEDITOR_LBL_PREVIEW') . '\',
+			lblPreview   : \'' . Text::_('JJ_UIKIT_HTMLEDITOR_LBL_PREVIEW') . '\',
 		});
 
 		$("#editor-xtd-buttons a:last-child").removeAttr("onclick").attr("id", "JJ_UIKIT_readmore");
@@ -42,7 +45,7 @@ JFactory::getDocument()->addScriptDeclaration('
 			var content = editorElement.val();
 			if (content.match(/<hr\s+id=(\'|")system-readmore(\'|")\s*\/*>/i))
 			{
-				alert("' . JText::_('PLG_READMORE_ALREADY_EXISTS', true) . '");
+				alert("' . Text::_('PLG_READMORE_ALREADY_EXISTS', true) . '");
 				return false;
 			}
 			else
@@ -60,4 +63,4 @@ JFactory::getDocument()->addScriptDeclaration('
 
 <?php echo '<textarea name="', $name, '" id="', $id, '" cols="', $cols, '" rows="', $rows, '">', $content, '</textarea>'; ?>
 
-<?php echo $displayData->buttons; ?>
+<?php echo $buttons; ?>
